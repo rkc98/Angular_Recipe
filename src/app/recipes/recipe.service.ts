@@ -4,7 +4,7 @@ import { Ingredient } from "../shared/ingredient.model";
 import { Recipe } from "./recipe.model";
 
 export class RecipeService{
-  
+    recipechanged=new Subject();
   private recipes:Recipe[]=[
         new Recipe("maggi","in 2 minutes","https://im.rediff.com/getahead/2020/sep/29burnt-garlic-chilli-maggi.jpg",[
           new Ingredient("noodles",260),
@@ -19,6 +19,14 @@ export class RecipeService{
          }
         getRecipe(index: number){
        return this.recipes[index];
+        }
+        addRecipe(recipe :Recipe){
+       this.recipes.push(recipe);
+       this.recipechanged.next(this.recipes.slice());
+        }
+        updateRecipe(index:number,newrecipe:Recipe){
+         this.recipes[index]=newrecipe
+         this.recipechanged.next(this.recipes.slice());
         }
 
 }
