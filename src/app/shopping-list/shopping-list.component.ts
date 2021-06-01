@@ -18,5 +18,7 @@ ingredients:Ingredient[]=[];
      this.ingredients=ingredients;
     })
   }
-
+  onedititem(index:number){
+    this.shoppinglistservice.ingredientseditting.next(index);
+  }
 }
